@@ -215,6 +215,23 @@ dialog::backdrop{background:#020508e0}
 @keyframes shuffle{40%{transform:translate(18px,-10px) rotate(4deg)}70%{transform:translate(-12px,6px) rotate(-3deg)}}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}}
 
+/* Página de créditos */
+.creditsMain{max-width:1100px;margin:0 auto;padding:64px 6% 96px}
+.creditsBack{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:12px;letter-spacing:.14em;font-weight:600;color:#cbd0d2}
+.creditsBack:hover{color:var(--rose)}
+.creditsMain h1{font:400 clamp(38px,5vw,64px)/1.1 'Playfair Display',Georgia,serif;letter-spacing:-.03em;margin:32px 0 20px}
+.creditsMain h1 i{color:#a4adb5}
+.creditsMain h2{font-size:clamp(28px,3vw,36px);margin:56px 0 12px}
+.creditsMain p{color:var(--muted);font-size:16px;line-height:1.75;max-width:70ch}
+.creditsMain .micro{font-size:12px;letter-spacing:.16em;font-weight:600;color:#7d8791;margin-top:48px}
+.creditsMain a:not(.creditsBack){text-decoration:underline;text-underline-offset:3px;text-decoration-color:#58636c}
+.creditsMain a:hover{color:var(--silver)}
+.creditsTable{overflow-x:auto;margin-top:32px;border:1px solid var(--line)}
+.creditsTable table{width:100%;min-width:720px;border-collapse:collapse;font-size:14px;line-height:1.5}
+.creditsTable th{text-align:left;font-size:12px;letter-spacing:.14em;color:var(--amber);font-weight:600;padding:14px 16px;border-bottom:1px solid var(--line);background:#111820}
+.creditsTable td{padding:14px 16px;border-bottom:1px solid #222c35;color:#c5ccd0;vertical-align:top}
+.creditsTable tr:last-child td{border-bottom:0}
+
 /* Acta de custodia: solo se ve al imprimir */
 .acta{display:none}
 @media print{
