@@ -12,13 +12,14 @@
 <link rel="preload" href="assets/hero.jpg" as="image">
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
+<script src="oracle.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#inventario">Saltar al inventario</a>
 <div class="grain" aria-hidden="true"></div>
 <header class="top">
 <a class="brand" href="#inicio"><span class="sigil" aria-hidden="true">✳</span><span>EL GABINETE <small>DE LAS SOMBRAS</small></span></a>
-<nav aria-label="Principal"><a href="#inventario">Inventario</a><a href="#origen">El gabinete</a></nav>
+<nav aria-label="Principal"><a href="#inventario">Inventario</a><a href="#origen">El gabinete</a><a href="#oraculo">El Oráculo</a></nav>
 <button id="basketBtn" class="basket" aria-haspopup="dialog">CUSTODIA <span id="count">00</span><span class="sr"> piezas retenidas</span></button>
 </header>
 <main>
@@ -40,19 +41,36 @@
 <section id="inventario" class="catalog" aria-labelledby="catalogTitle">
 <div class="sectionHead">
 <div><span class="kicker">02 / CATÁLOGO CONFIDENCIAL</span><h2 id="catalogTitle">Piezas bajo <i>custodia.</i></h2></div>
-<div class="controls"><label for="filter">CLASIFICACIÓN</label><select id="filter"><option value="all">TODAS LAS PIEZAS</option><option value="objeto">OBJETOS</option><option value="documento">DOCUMENTOS</option><option value="instrumento">INSTRUMENTOS</option></select><p id="resultCount" class="resultCount" aria-live="polite"></p></div>
+</div>
+<div class="controls" role="search" aria-label="Buscar en el catálogo">
+<div class="field fieldSearch"><label for="search">BUSCAR</label><input id="search" type="search" placeholder="Nombre, época o procedencia" autocomplete="off" spellcheck="false"></div>
+<div class="field"><label for="filter">CLASIFICACIÓN</label><select id="filter"><option value="all">TODAS LAS PIEZAS</option><option value="objeto">OBJETOS</option><option value="documento">DOCUMENTOS</option><option value="instrumento">INSTRUMENTOS</option></select></div>
+<div class="field"><label for="sort">ORDENAR</label><select id="sort"><option value="reg">Nº DE REGISTRO</option><option value="old">ÉPOCA · MÁS ANTIGUA</option><option value="new">ÉPOCA · MÁS RECIENTE</option><option value="low">VALOR · MENOR</option><option value="high">VALOR · MAYOR</option></select></div>
+</div>
+<div class="catalogStatus">
+<p id="resultCount" class="resultCount" aria-live="polite"></p>
+<details class="registry" id="registry"><summary>REGISTRO DE EXPEDIENTES INVESTIGADOS <b id="invCount">0 / 6</b></summary><div class="registryBody"><div class="meter" aria-hidden="true"><span id="invMeter"></span></div><ol id="invList"></ol><button id="invReset" class="linkButton" hidden>BORRAR EL REGISTRO</button></div></details>
 </div>
 <div id="gallery" class="gallery"></div>
+<div id="noResults" class="noResults" hidden><p>Ningún objeto del archivo responde a esa búsqueda.</p><button id="clearSearch" class="outline">MOSTRAR TODAS LAS PIEZAS</button></div>
 </section>
 <section class="interlude" aria-label="Nota encontrada en el archivo">
 <div class="interludePhoto" aria-hidden="true"></div>
 <div class="interludeContent"><span class="kicker">NOTA ENCONTRADA EN EL ARCHIVO</span><p>«Si una pieza vuelve a su lugar después de haberla movido, no vuelva a tocarla.»</p><span class="signature">— Extracto del protocolo 04, autor desconocido</span><button id="reveal" class="textButton" aria-expanded="false" aria-controls="hiddenNote">DESCIFRAR ANOTACIÓN <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button><div id="hiddenNote" class="hiddenNote" aria-live="polite"></div></div>
 </section>
-<section class="last" aria-labelledby="lastTitle"><span class="kicker">03 / AVISO FINAL</span><h2 id="lastTitle">Usted ya figura<br>en el <i>registro.</i></h2><p>Su visita ha sido anotada. El Gabinete no se responsabiliza de lo que decida llevarse.</p><a href="#inicio" class="primary">VOLVER A LA SUPERFICIE <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a></section>
+<section id="oraculo" class="oracle" aria-labelledby="oracleTitle">
+<div class="oracleIntro"><span class="kicker">03 / EL ORÁCULO</span><h2 id="oracleTitle">Tres cartas <i>boca abajo.</i></h2><p>Elija tres naipes del mazo del Gabinete. El primero hablará del pasado; el segundo, del presente; el tercero, de lo que aún no ha llegado.</p><p class="micro">TIRADA SIMBÓLICA · SOLO PARA ENTRETENIMIENTO · NO PREDICE NADA</p></div>
+<ol class="spread" id="spread"></ol>
+<p id="oracleStatus" class="oracleStatus" aria-live="polite"></p>
+<div class="deck" id="deck" role="group" aria-label="Mazo de doce cartas boca abajo"></div>
+<div class="reading" id="reading" hidden><h3 id="readingTitle" tabindex="-1">La lectura del <i>Oráculo.</i></h3><ol id="readingList"></ol><button id="reshuffle" class="outline">BARAJAR DE NUEVO <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M2.5 5h8l-2-2M13.5 11h-8l2 2M10.5 5c1.7 0 3 1.3 3 3M5.5 11c-1.7 0-3-1.3-3-3"/></svg></button></div>
+</section>
+<section class="last" aria-labelledby="lastTitle"><span class="kicker">04 / AVISO FINAL</span><h2 id="lastTitle">Usted ya figura<br>en el <i>registro.</i></h2><p>Su visita ha sido anotada. El Gabinete no se responsabiliza de lo que decida llevarse.</p><a href="#inicio" class="primary">VOLVER A LA SUPERFICIE <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a></section>
 </main>
 <footer><span><span aria-hidden="true">✳</span> EL GABINETE DE LAS SOMBRAS</span><span>EXPERIMENTO WEB · HTML / CSS / JAVASCRIPT</span><span>© 2026 · FICCIÓN</span><span class="credits">Imágenes: <a href="assets/CREDITOS.md">The Metropolitan Museum of Art (CC0)</a> · Radio: Joe Haupt, <a href="https://creativecommons.org/licenses/by/2.0/deed.es">CC BY 2.0</a>, modificada</span></footer>
 <dialog id="dossier" aria-labelledby="dossierTitle"><button class="close" id="closeDossier" aria-label="Cerrar expediente"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button><div id="dossierBody" class="dialogScroll"></div></dialog>
-<dialog id="basketDialog" aria-labelledby="basketTitle"><button class="close" id="closeBasket" aria-label="Cerrar custodia"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button><div class="dialogScroll"><div class="dialogInner"><span class="kicker">ARCHIVO DE CUSTODIA</span><h2 id="basketTitle" tabindex="-1">Piezas <i>retenidas.</i></h2><div id="basketList"></div><div class="basketFooter"><span id="total"></span><button id="clearBasket" class="outline">LIBERAR TODAS LAS PIEZAS</button></div></div></div></dialog>
+<dialog id="basketDialog" aria-labelledby="basketTitle"><button class="close" id="closeBasket" aria-label="Cerrar custodia"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button><div class="dialogScroll"><div class="dialogInner"><span class="kicker">ARCHIVO DE CUSTODIA</span><h2 id="basketTitle" tabindex="-1">Piezas <i>retenidas.</i></h2><div id="basketList"></div><div class="basketFooter"><span id="total"></span><div class="basketActions"><button id="printActa" class="add">EMITIR ACTA DE CUSTODIA <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 6V2.5h7V6M4.5 11.5h-2v-5h11v5h-2M4.5 9.5h7v4h-7z"/></svg></button><button id="clearBasket" class="outline">LIBERAR TODAS LAS PIEZAS</button></div></div></div></div></dialog>
+<section id="acta" class="acta" aria-hidden="true"></section>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
