@@ -1,1 +1,58 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080b10"><title>El Gabinete de las Sombras — Inventario reservado</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head><body><div class="grain"></div><header class="top"><a class="brand" href="#inicio"><span class="sigil">✳</span><span>EL GABINETE <small>DE LAS SOMBRAS</small></span></a><nav aria-label="Principal"><a href="#inventario">Inventario</a><a href="#origen">El gabinete</a><button id="basketBtn" class="basket">CUSTODIA <span id="count">00</span></button></nav></header><main><section id="inicio" class="hero"><div class="heroImage"></div><div class="mist"></div><div class="heroInner"><div class="eyebrow"><span class="pulse"></span> ACCESO NO AUTORIZADO / ARCHIVO 1893</div><div class="heroTitle"><span class="overline">Antigüedades de procedencia incierta</span><h1>NO TODO LO<br>QUE SE PIERDE<br><em>QUIERE SER</em><br>ENCONTRADO.</h1></div><div class="heroFoot"><p>Objetos recuperados de lugares que ya no figuran en los mapas. Cada pieza conserva algo de su último propietario.</p><a class="primary" href="#inventario">ENTRAR AL INVENTARIO <span>↗</span></a></div></div><div class="vertical">REGISTRO DE ACCESO · 13 / 10 / 2026</div><div class="heroBottom">ESTADO DEL ARCHIVO <b>● EN LÍNEA</b><span>DESPLAZA PARA DESCENDER ↓</span></div></section><section class="marquee" aria-label="Aviso"><span>⚠ OBJETOS SIN GARANTÍA DE PROCEDENCIA</span><span>✳ INVENTARIO RESTRINGIDO</span><span>⚠ NO ABRIR DESPUÉS DE LAS 03:17</span></section><section class="intro" id="origen"><div><span class="kicker">01 / SOBRE EL GABINETE</span><h2>Hay historias que<br>no se <i>entierran.</i></h2></div><div class="introRight"><div class="redline"></div><p>Desde 1893, el Gabinete conserva objetos que desafían toda explicación razonable. No certificamos sus leyendas. Tampoco recomendamos ponerlas a prueba.</p><p class="micro">TODAS LAS PIEZAS SON FICTICIAS · PROYECTO EXPERIMENTAL</p></div></section><section id="inventario" class="catalog"><div class="sectionHead"><div><span class="kicker">02 / CATÁLOGO CONFIDENCIAL</span><h2>Piezas bajo <i>custodia.</i></h2></div><div class="controls"><label for="filter">CLASIFICACIÓN</label><select id="filter"><option value="all">TODAS LAS PIEZAS</option><option value="objeto">OBJETOS</option><option value="documento">DOCUMENTOS</option><option value="instrumento">INSTRUMENTOS</option></select></div></div><div id="gallery" class="gallery"></div></section><section class="interlude"><div class="interludePhoto"></div><div class="interludeContent"><span class="kicker">NOTA ENCONTRADA EN EL ARCHIVO</span><p>«Si una pieza vuelve a su lugar después de haberla movido, no vuelva a tocarla.»</p><span class="signature">— Extracto del protocolo 04, autor desconocido</span><button id="reveal" class="textButton">DESCIFRAR ANOTACIÓN <span>↗</span></button><div id="hiddenNote" class="hiddenNote" aria-live="polite"></div></div></section><section class="last"><span class="kicker">03 / AVISO FINAL</span><h2>Usted ya figura<br>en el <i>registro.</i></h2><p>Su visita ha sido anotada. El Gabinete no se responsabiliza de lo que decida llevarse.</p><a href="#inicio" class="primary">VOLVER A LA SUPERFICIE ↑</a></section></main><footer><span>✳ EL GABINETE DE LAS SOMBRAS</span><span>EXPERIMENTO WEB · HTML / CSS / JAVASCRIPT</span><span>© 2026 · FICCIÓN</span></footer><dialog id="dossier"><button class="close" id="closeDossier" aria-label="Cerrar expediente">✕</button><div id="dossierBody"></div></dialog><dialog id="basketDialog"><button class="close" id="closeBasket" aria-label="Cerrar custodia">✕</button><div class="dialogInner"><span class="kicker">ARCHIVO DE CUSTODIA</span><h2>Piezas <i>retenidas.</i></h2><div id="basketList"></div><div class="basketFooter"><span id="total"></span><button id="clearBasket" class="outline">LIBERAR TODAS LAS PIEZAS</button></div></div></dialog><div id="toast" role="status" aria-live="polite"></div></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b10">
+<meta name="description" content="Inventario reservado de antigüedades de procedencia incierta. Proyecto de ficción.">
+<title>El Gabinete de las Sombras — Inventario reservado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="preload" href="assets/hero.jpg" as="image">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#inventario">Saltar al inventario</a>
+<div class="grain" aria-hidden="true"></div>
+<header class="top">
+<a class="brand" href="#inicio"><span class="sigil" aria-hidden="true">✳</span><span>EL GABINETE <small>DE LAS SOMBRAS</small></span></a>
+<nav aria-label="Principal"><a href="#inventario">Inventario</a><a href="#origen">El gabinete</a></nav>
+<button id="basketBtn" class="basket" aria-haspopup="dialog">CUSTODIA <span id="count">00</span><span class="sr"> piezas retenidas</span></button>
+</header>
+<main>
+<section id="inicio" class="hero">
+<div class="heroImage" aria-hidden="true"></div><div class="mist" aria-hidden="true"></div>
+<div class="heroInner">
+<div class="eyebrow"><span class="pulse" aria-hidden="true"></span> ACCESO NO AUTORIZADO / ARCHIVO 1893</div>
+<div class="heroTitle"><span class="overline">Antigüedades de procedencia incierta</span><h1>NO TODO LO<br>QUE SE PIERDE<br><em>QUIERE SER</em><br>ENCONTRADO.</h1></div>
+<div class="heroFoot"><p>Objetos recuperados de lugares que ya no figuran en los mapas. Cada pieza conserva algo de su último propietario.</p><a class="primary" href="#inventario">ENTRAR AL INVENTARIO <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></a></div>
+</div>
+<div class="vertical">REGISTRO DE ACCESO · <span id="accessDate">13 / 10 / 2026</span></div>
+<div class="heroBottom">ESTADO DEL ARCHIVO <b>● EN LÍNEA</b><span>DESPLAZA PARA DESCENDER <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4"/></svg></span></div>
+</section>
+<section class="marquee" aria-label="Aviso"><span><svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 2.5l6 11H2zM8 6.5v3.5M8 11.6v.4"/></svg> OBJETOS SIN GARANTÍA DE PROCEDENCIA</span><span><span aria-hidden="true">✳</span> INVENTARIO RESTRINGIDO</span><span><svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 2.5l6 11H2zM8 6.5v3.5M8 11.6v.4"/></svg> NO ABRIR DESPUÉS DE LAS 03:17</span></section>
+<section class="intro" id="origen">
+<div><span class="kicker">01 / SOBRE EL GABINETE</span><h2>Hay historias que<br>no se <i>entierran.</i></h2></div>
+<div class="introRight"><div class="redline" aria-hidden="true"></div><p>Desde 1893, el Gabinete conserva objetos que desafían toda explicación razonable. No certificamos sus leyendas. Tampoco recomendamos ponerlas a prueba.</p><p class="micro">TODAS LAS PIEZAS SON FICTICIAS · PROYECTO EXPERIMENTAL</p></div>
+</section>
+<section id="inventario" class="catalog" aria-labelledby="catalogTitle">
+<div class="sectionHead">
+<div><span class="kicker">02 / CATÁLOGO CONFIDENCIAL</span><h2 id="catalogTitle">Piezas bajo <i>custodia.</i></h2></div>
+<div class="controls"><label for="filter">CLASIFICACIÓN</label><select id="filter"><option value="all">TODAS LAS PIEZAS</option><option value="objeto">OBJETOS</option><option value="documento">DOCUMENTOS</option><option value="instrumento">INSTRUMENTOS</option></select><p id="resultCount" class="resultCount" aria-live="polite"></p></div>
+</div>
+<div id="gallery" class="gallery"></div>
+</section>
+<section class="interlude" aria-label="Nota encontrada en el archivo">
+<div class="interludePhoto" aria-hidden="true"></div>
+<div class="interludeContent"><span class="kicker">NOTA ENCONTRADA EN EL ARCHIVO</span><p>«Si una pieza vuelve a su lugar después de haberla movido, no vuelva a tocarla.»</p><span class="signature">— Extracto del protocolo 04, autor desconocido</span><button id="reveal" class="textButton" aria-expanded="false" aria-controls="hiddenNote">DESCIFRAR ANOTACIÓN <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button><div id="hiddenNote" class="hiddenNote" aria-live="polite"></div></div>
+</section>
+<section class="last" aria-labelledby="lastTitle"><span class="kicker">03 / AVISO FINAL</span><h2 id="lastTitle">Usted ya figura<br>en el <i>registro.</i></h2><p>Su visita ha sido anotada. El Gabinete no se responsabiliza de lo que decida llevarse.</p><a href="#inicio" class="primary">VOLVER A LA SUPERFICIE <svg class="ico" aria-hidden="true" viewBox="0 0 16 16"><path d="M8 13V3M4 7l4-4 4 4"/></svg></a></section>
+</main>
+<footer><span><span aria-hidden="true">✳</span> EL GABINETE DE LAS SOMBRAS</span><span>EXPERIMENTO WEB · HTML / CSS / JAVASCRIPT</span><span>© 2026 · FICCIÓN</span><span class="credits">Imágenes: <a href="assets/CREDITOS.md">The Metropolitan Museum of Art (CC0)</a> · Radio: Joe Haupt, <a href="https://creativecommons.org/licenses/by/2.0/deed.es">CC BY 2.0</a>, modificada</span></footer>
+<dialog id="dossier" aria-labelledby="dossierTitle"><button class="close" id="closeDossier" aria-label="Cerrar expediente"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button><div id="dossierBody" class="dialogScroll"></div></dialog>
+<dialog id="basketDialog" aria-labelledby="basketTitle"><button class="close" id="closeBasket" aria-label="Cerrar custodia"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button><div class="dialogScroll"><div class="dialogInner"><span class="kicker">ARCHIVO DE CUSTODIA</span><h2 id="basketTitle" tabindex="-1">Piezas <i>retenidas.</i></h2><div id="basketList"></div><div class="basketFooter"><span id="total"></span><button id="clearBasket" class="outline">LIBERAR TODAS LAS PIEZAS</button></div></div></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
