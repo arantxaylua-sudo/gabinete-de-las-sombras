@@ -1,3 +1,6 @@
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('assets/fonts/dm-sans-latin.woff2') format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url('assets/fonts/playfair-display-latin.woff2') format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 500;font-display:swap;src:url('assets/fonts/playfair-display-italic-latin.woff2') format('woff2')}
 :root{--bg:#080b10;--bg2:#0d1218;--panel:#10151b;--card:#141b22;--line:#303b45;--line2:#44505a;--text:#e6e6e4;--silver:#c6cbd0;--paper:#c5c9c9;--paperHi:#e6e8e6;--muted:#a9b1b8;--dim:#8d969f;--faint:#7c8790;--red:#ac4039;--rose:#f0b4a6;--amber:#bb8b58;--focus:#d9a36a;--topH:76px;--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scrollbar-color:#3c4650 var(--bg);-webkit-text-size-adjust:100%}

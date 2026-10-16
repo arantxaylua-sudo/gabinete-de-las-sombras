@@ -1,0 +1,19 @@
+# Configuración local de Claude Code y sus skills
+.claude/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependencias, registros y temporales
+node_modules/
+*.log
+*.tmp
+.env
+.env.*

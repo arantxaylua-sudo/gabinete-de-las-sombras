@@ -14,3 +14,7 @@ Todas las imágenes se han recortado, reencuadrado y retocado (fondo, tono azul 
 | `radio.jpg` | Vintage Brunswick Wood Table Radio, circa 1930s | Foto: Joe Haupt | Wikimedia Commons · https://commons.wikimedia.org/wiki/File:Vintage_Brunswick_Wood_Table_Radio,_AM_Band,_5_Vacuum_Tubes,_Resistor_Line_Cord,_No_Model_Number,_Made_In_USA,_Circa_1930s_(13858381414).jpg | CC BY 2.0 · https://creativecommons.org/licenses/by/2.0/ — imagen modificada |
 
 La radio exige atribución: el pie de la web incluye «Radio: Joe Haupt, CC BY 2.0, modificada».
+
+## Tipografías
+
+`assets/fonts/` contiene DM Sans (Colophon Foundry) y Playfair Display (Claus Eggers Sørensen), en el subconjunto latino descargado de Google Fonts. Ambas tienen licencia SIL Open Font License 1.1 (https://openfontlicense.org), que permite alojarlas y redistribuirlas junto a la web.

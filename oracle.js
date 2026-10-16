@@ -40,7 +40,9 @@ read:['Un comienzo impulsivo le trajo hasta aquí. Fue más sabio de lo que pare
 ];
 
 const back=`<svg class="tBackArt" viewBox="0 0 120 200" aria-hidden="true"><rect x="6" y="6" width="108" height="188" rx="4"/><rect x="12" y="12" width="96" height="176" rx="2" opacity=".5"/><path d="M60 22L98 100L60 178L22 100Z" opacity=".55"/><path d="M60 40L86 100L60 160L34 100Z" opacity=".35"/><circle cx="60" cy="100" r="22"/><path class="a" d="${star(8,16,6,-Math.PI/2).replace(/(\d+\.\d+) (\d+\.\d+)/g,(m,x,y)=>`${(+x+10).toFixed(2)} ${(+y+50).toFixed(2)}`)}"/><path d="M60 36A8 8 0 1 0 60 52A6 6 0 1 1 60 36ZM60 148A8 8 0 1 0 60 164A6 6 0 1 1 60 148Z" opacity=".7"/></svg>`;
-const face=c=>`<div class="tFaceArt"><span class="tNum">${c.n}</span><svg viewBox="0 0 100 100" aria-hidden="true">${c.svg}</svg><span class="tName">${c.name}</span></div>`;
+const esc=v=>String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+// c.svg es marcado propio y fijo; los textos se escapan
+const face=c=>`<div class="tFaceArt"><span class="tNum">${esc(c.n)}</span><svg viewBox="0 0 100 100" aria-hidden="true">${c.svg}</svg><span class="tName">${esc(c.name)}</span></div>`;
 
 let order=[],picked=[];
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -55,10 +57,10 @@ function pick(btn){if(picked.length>=3||btn.getAttribute('aria-disabled')==='tru
 const slotIndex=picked.length,c=cards[order[+btn.dataset.deck]];picked.push(c);
 btn.setAttribute('aria-disabled','true');btn.classList.add('taken');btn.setAttribute('aria-label',`Carta ${+btn.dataset.deck+1}: elegida para el ${positions[slotIndex].toLowerCase()}`);
 const slot=spread.querySelector(`[data-slot="${slotIndex}"]`);slot.querySelector('.tFace').innerHTML=face(c);slot.classList.add('filled');
-requestAnimationFrame(()=>requestAnimationFrame(()=>slot.querySelector('.tcard').classList.add('flipped')));
+const tc=slot.querySelector('.tcard');void tc.offsetWidth;tc.classList.add('flipped'); // forzar reflow para que la transición arranque desde el dorso
 const delay=reduce.matches?0:850;
 setTimeout(()=>{slot.querySelector('.slotName').textContent=c.name;
-const li=document.createElement('li');li.className='readingItem';li.innerHTML=`<span class="readingPos">${positions[slotIndex]} · ${c.n}</span><h4>${c.name}</h4><p class="readingKeys">${c.keys}</p><p>${c.read[slotIndex]}</p>`;readingList.append(li);reading.hidden=false;
+const li=document.createElement('li');li.className='readingItem';li.innerHTML=`<span class="readingPos">${positions[slotIndex]} · ${esc(c.n)}</span><h4>${esc(c.name)}</h4><p class="readingKeys">${esc(c.keys)}</p><p>${esc(c.read[slotIndex])}</p>`;readingList.append(li);reading.hidden=false;
 status.textContent=`${positions[slotIndex]}: ${c.name}. ${c.read[slotIndex]}`;
 if(picked.length===3){deck.classList.add('done');setTimeout(()=>{status.textContent='La tirada está completa. Puede barajar de nuevo cuando quiera.';$('#readingTitle').focus({preventScroll:true});reading.scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'nearest'})},reduce.matches?0:400)}
 else setTimeout(setStatus,1600)},delay)}
