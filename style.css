@@ -222,7 +222,7 @@ dialog::backdrop{background:#020508e0}
 .creditsMain h1{font:400 clamp(38px,5vw,64px)/1.1 'Playfair Display',Georgia,serif;letter-spacing:-.03em;margin:32px 0 20px}
 .creditsMain h1 i{color:#a4adb5}
 .creditsMain h2{font-size:clamp(28px,3vw,36px);margin:56px 0 12px}
-.creditsMain p{color:var(--muted);font-size:16px;line-height:1.75;max-width:70ch}
+.creditsMain p{color:var(--muted);font-size:16px;line-height:1.75;max-width:60ch}
 .creditsMain .micro{font-size:12px;letter-spacing:.16em;font-weight:600;color:#7d8791;margin-top:48px}
 .creditsMain a:not(.creditsBack){text-decoration:underline;text-underline-offset:3px;text-decoration-color:#58636c}
 .creditsMain a:hover{color:var(--silver)}
